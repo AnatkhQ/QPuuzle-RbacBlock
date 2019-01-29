@@ -1,0 +1,134 @@
+{% extends 'layout_plus.html' %}
+{% block content %}
+    <div class="luffy-container">
+
+        <form method="post" action="?type=generate">
+            {% csrf_token %}
+            {{ generate_formset.management_form }}
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">
+                    <i class="fa fa-th-list" aria-hidden="true"></i> 待新建权限列表
+                    <button href="#" class="right btn btn-primary btn-xs"
+                            style="padding: 2px 8px;margin: -3px;float: right;">
+                        <i class="fa fa-save" aria-hidden="true"></i>
+                        新建
+                    </button>
+                </div>
+                <div class="panel-body" style="color: #9d9d9d;">
+                    注意：路由系统中自动发现且数据库中不存在的路由。
+                </div>
+                <!-- Table -->
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>名称</th>
+                        <th>URL</th>
+                        <th>别名</th>
+                        <th>菜单</th>
+                        <th>父权限</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for form in generate_formset %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            {% for field in  form %}
+                                <td>{{ field }}<span style="color: red;">{{ field.errors.0 }}</span></td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </form>
+
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <i class="fa fa-th-list" aria-hidden="true"></i> 已失效的URL权限列表
+            </div>
+            <div class="panel-body" style="color: #9d9d9d;">
+                注意：数据库中存在，但路由系统中不存在的路由。
+            </div>
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>名称</th>
+                    <th>URL</th>
+                    <th>别名</th>
+                    <th>删除</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for row in delete_row_list %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ row.title }}</td>
+                        <td>{{ row.url }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>
+                            <a style="color: #d9534f;" href="{% url 'rbac:multi_permissions_del' pk=row.id %}">
+                                <i class="fa fa-trash-o"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+        <form method="post" action="?type=update">{# 根据URLtype的不同用于区别同一个页面不同的post请求 #}
+            {% csrf_token %}
+            {{ update_formset.management_form }}{# 使用formset必须引入formset名.management_form #}
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">
+                    <i class="fa fa-th-list" aria-hidden="true"></i> 待更新权限列表
+                    <button href="#" class="right btn btn-primary btn-xs"
+                            style="padding: 2px 8px;margin: -3px;float: right;">
+                        <i class="fa fa-save" aria-hidden="true"></i>
+                        保存
+                    </button>
+                </div>
+                <div class="panel-body" style="color: #9d9d9d;">
+                    注意：数据库和路由系统都存在的路由。
+                </div>
+                <!-- Table -->
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>名称</th>
+                        <th>URL</th>
+                        <th>别名</th>
+                        <th>菜单</th>
+                        <th>父权限</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for form in update_formset %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            {% for field in  form %}
+                                {% if forloop.first %}{# 如果是第一个字段(ID) #}
+                                    {{ field }}{# 直接生成该input type=hidden 隐藏起来，有了id就能在修改页面找到对应id进行修改 #}
+                                {% else %}
+                                    <td>{{ field }}<span style="color: red;">{{ field.errors.0 }}</span></td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

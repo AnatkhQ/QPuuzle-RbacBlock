@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'assets/images/favicon.png' %}" type="image/png">
+    <title></title>
+    <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet">
+    {% comment %}{% endcomment %}
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+          <script src="js/html5shiv.min.js"></script>
+          <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body class="error-bg">
+
+<!--Start Section-->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="error-inner">
+                <h1>404</h1>
+                <h3>糟糕，该页面未找到</h3>
+                <p>请访问正确路径</p>
+                <a href="{% url 'index' %}" class="btn btn-primary">回到首页</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End Section-->
+
+
+<!--Begin core plugin -->
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<!-- End core plugin -->
+
+</body>
+
+</html>

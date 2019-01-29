@@ -1,0 +1,11 @@
+{% for item in menu_dict.values %}
+    {# 一级菜单 #}
+    <li class="menu-list {{ item.class }}"><a href=""><i class="fa {{ item.icon }}"></i> <span>{{ item.title }}</span></a>
+        {# 二级菜单 #}
+        <ul class="sub-menu-list">
+            {% for per in item.children %}
+                <li class="{{ per.class }}"><a href="{{ per.url }}">{{ per.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endfor %}

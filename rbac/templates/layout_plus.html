@@ -1,0 +1,306 @@
+{% load static %}
+{% load rbac %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'assets/images/favicon.png' %}" type="image/png">
+    <title>Home</title>
+
+    <!--Begin  Page Level  CSS -->
+    <link href="{% static 'assets/plugins/morris-chart/morris.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/jquery-ui/jquery-ui.min.css' %}" rel="stylesheet"/>
+    <!--End  Page Level  CSS -->
+    <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+          <script src="js/html5shiv.min.js"></script>
+          <script src="js/respond.min.js"></script>
+    <![endif]-->
+    {% block css %}
+    
+    {% endblock %}
+</head>
+
+<body class="sticky-header">
+
+
+<!--左侧菜单开始-->
+<div class="left-side sticky-left-side">
+
+    <!--logo-->
+    <div class="logo">
+        <a href="{% url 'index' %}"><img src="{% static 'assets/images/logo.png' %}" alt=""></a>
+    </div>
+
+    <div class="logo-icon text-center">
+        <a href="{% url 'index' %}"><img src="{% static 'assets/images/logo-icon.png' %}" alt=""></a>
+    </div>
+    <!--logo-->
+
+    <div class="left-side-inner">
+        <!--左侧菜单收缩栏开始-->
+        <ul class="nav nav-pills nav-stacked custom-nav">
+
+            {% multi_menu request %}
+
+        </ul>
+        <!--左侧菜单收缩栏结束-->
+
+    </div>
+</div>
+<!--左侧菜单结束-->
+
+
+<!-- 右侧主界面开始-->
+<div class="main-content">
+
+    <!-- 头部开始-->
+    <div class="header-section">
+
+        <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+
+        <form class="searchform">
+            <input type="text" class="form-control" name="keyword" placeholder="Search here..."/>
+        </form>
+
+        <!--通知栏开始 -->
+        <div class="menu-right">
+            <ul class="notification-menu">
+                <li>
+                    <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+                        <i class="fa fa-tasks"></i>
+                        <span class="badge">8</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-head pull-right">
+                        <h5 class="title">You have 8 pending task</h5>
+                        <ul class="dropdown-list">
+                            <li class="notification-scroll-list notification-list ">
+                                <!-- list item-->
+                                <a href="javascript:void(0);" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left p-r-10">
+                                            <em class="fa  fa-shopping-cart noti-primary"></em>
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">A new order has been placed.</h5>
+                                            <p class="m-0">
+                                                <small>29 min ago</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- list item-->
+                                <a href="javascript:void(0);" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left p-r-10">
+                                            <em class="fa fa-check noti-success"></em>
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">Databse backup is complete</h5>
+                                            <p class="m-0">
+                                                <small>12 min ago</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- list item-->
+                                <a href="javascript:void(0);" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left p-r-10">
+                                            <em class="fa fa-user-plus noti-info"></em>
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">New user registered</h5>
+                                            <p class="m-0">
+                                                <small>17 min ago</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- list item-->
+                                <a href="javascript:void(0);" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left p-r-10">
+                                            <em class="fa fa-diamond noti-danger"></em>
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">Database error.</h5>
+                                            <p class="m-0">
+                                                <small>11 min ago</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- list item-->
+                                <a href="javascript:void(0);" class="list-group-item">
+                                    <div class="media">
+                                        <div class="pull-left p-r-10">
+                                            <em class="fa fa-cog noti-warning"></em>
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">New settings</h5>
+                                            <p class="m-0">
+                                                <small>18 min ago</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="last"><a href="#">View all notifications</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+                        <i class="fa fa-bell-o"></i>
+                        <span class="badge">4</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-head pull-right">
+                        <h5 class="title">Notifications</h5>
+                        <ul class="dropdown-list normal-list">
+                            <li class="message-list message-scroll-list">
+                                <a href="#">
+                                    <span class="photo"> <img src="{% static 'assets/images/users/avatar-8.jpg' %}"
+                                                              class="img-circle" alt="img"></span>
+                                    <span class="subject">John Doe</span>
+                                    <span class="message"> New tasks needs to be done</span>
+                                    <span class="time">15 minutes ago</span>
+                                </a>
+
+                                <a href="#">
+                                    <span class="photo"> <img src="{% static 'assets/images/users/avatar-7.jpg' %}"
+                                                              class="img-circle" alt="img"></span>
+                                    <span class="subject">John Doe</span>
+                                    <span class="message"> New tasks needs to be done</span>
+                                    <span class="time">10 minutes ago</span>
+                                </a>
+
+                                <a href="#">
+                                    <span class="photo"> <img src="{% static 'assets/images/users/avatar-6.jpg' %}"
+                                                              class="img-circle" alt="img"></span>
+                                    <span class="subject">John Doe</span>
+                                    <span class="message"> New tasks needs to be done</span>
+                                    <span class="time">20 minutes ago</span>
+                                </a>
+
+                                <a href="#">
+                                    <span class="photo"> <img src="{% static 'assets/images/users/avatar-6.jpg' %}"
+                                                              class="img-circle" alt="img"></span>
+                                    <span class="subject">John Doe</span>
+                                    <span class="message"> New tasks needs to be done</span>
+                                    <span class="time">20 minutes ago</span>
+                                </a>
+
+                                <a href="#">
+                                    <span class="photo"> <img src="{% static 'assets/images/users/avatar-6.jpg' %}"
+                                                              class="img-circle" alt="img"></span>
+                                    <span class="subject">John Doe</span>
+                                    <span class="message"> New tasks needs to be done</span>
+                                    <span class="time">20 minutes ago</span>
+                                </a>
+
+                                <a href="#">
+                                    <span class="photo"> <img src="{% static 'assets/images/users/avatar-6.jpg' %}"
+                                                              class="img-circle" alt="img"></span>
+                                    <span class="subject">John Doe</span>
+                                    <span class="message"> New tasks needs to be done</span>
+                                    <span class="time">20 minutes ago</span>
+                                </a>
+                            </li>
+                            <li class="last"><a href="#">All Messages</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <img src="{% static 'assets/images/users/avatar-6.jpg' %}" alt=""/>
+                        {{ request.user.name }}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                        <li><a href="#"> <i class="fa fa-wrench"></i> Settings </a></li>
+                        <li><a href="#"> <i class="fa fa-user"></i> Profile </a></li>
+                        <li><a href="#"> <i class="fa fa-info"></i> Help </a></li>
+                        <li><a href="#"> <i class="fa fa-lock"></i> Logout </a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+        <!--通知栏结束-->
+
+    </div>
+    <!-- 头部结束-->
+
+
+    <!--内容界面开始-->
+    <div class="wrapper">
+
+        <!--路径导航开始-->
+        {% breadcrumb request %}
+        <!--路径导航结束-->
+
+        <!--Start row-->
+        <div class="row">
+            <div class="container">
+                <div class="analytics-box">
+
+                </div>
+            </div>
+        </div>
+        <!--End row-->
+
+        {% block content %}
+        
+        {% endblock %}
+
+    </div>
+    <!-- 内容界面结束-->
+
+
+    <!--页脚开始 -->
+    <footer class="footer-main">Copyright &copy; 2018.Company name All rights reserved.<a target="_blank"
+                                                                                          href="#">基于Django的RBAC组件</a>
+    </footer>
+    <!--页脚结束 -->
+
+</div>
+<!--右侧主界面结束 -->
+
+
+<!--依赖JS开始 -->
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/plugins/moment/moment.js' %}"></script>
+<script src="{% static 'assets/js/jquery.slimscroll.js' %}"></script>
+<script src="{% static 'assets/js/jquery.nicescroll.js' %}"></script>
+<script src="{% static 'assets/js/functions.js' %}"></script>
+<!-- 依赖JS结束 -->
+
+<!--Begin Page Level Plugin-->
+<script src="{% static 'assets/plugins/jquery-sparkline/jquery.charts-sparkline.js' %}"></script>
+<!--End Page Level Plugin-->
+{% block js %}
+
+{% endblock %}
+
+</body>
+
+</html>
